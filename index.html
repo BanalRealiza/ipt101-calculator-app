@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fdfcfc;
+            box-shadow: #363535;
+        }
+
+        .CALCULATOR {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #435260;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 25px 25px 75px rgba(0,0,0,0.25),
+            10px 10px 70px rgba(0,0,0,0.25),
+            inset -5px -5px 15px rgba(0,0,0,0.5),
+            inset 5px 5px 15px rgba(0,0,0,0.5);
+            
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            width: 25%;
+        }
+
+    
+        
+
+        
+        #result{
+            width: 97%;
+            height: 95px;
+            background: #CBDAE7;
+            color: #3a3c2e;
+            box-shadow: inset 0 6px 1px 0 rgba(255, 255, 255, 0.35),
+            0 5px 5px rgba(0,0,0,0.50),
+            0 15px 25px rgba(0,0,0,0.35) ;
+            
+            border-radius: 5px;
+            font-size: 25px;
+            font-family:monospace;
+            text-align: right;
+            margin-bottom: 10px;
+            border-color: #CBDAE7;
+            
+            
+            
+        }
+
+        .num-btn{
+            padding: 20px;
+            width: 100px;
+            height: 105px;
+            background: linear-gradient(rgb(243, 243, 243)),gray;
+            border-radius: 6px;
+            font-size: 30px;
+            font-family: monospace;
+            align-items: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 -6px 6px 0 rgba(0,0,0,0.50),
+            0 5px 5px rgba(0,0,0,0.50);
+            border-color: gray;
+            
+            
+        }
+
+        .num-btn:hover, .equal-btn:hover{
+            background: #CBDAE7;
+        }
+
+        .equal-btn{
+            padding: 20px;
+            width: 100px;
+            height: 220px;
+            background: rgb(241, 204, 133);
+            border-radius: 6px;
+            border-color: #D5AE9E;
+            font-size: 30px;
+            font-family: monospace;
+            align-items: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 -6px 6px 0 rgba(0,0,0,0.50),
+            0 5px 5px rgba(0,0,0,0.50);
+            border-color: gray;
+            
+            
+        }
+
+        @media (max-width: 600px) {
+            #result{
+            width: 97%;
+            height: 60px;
+        }
+            .num-btn, .equal-btn {
+                padding: 15px;
+                width: 70px;
+                height: 80px;
+                font-size: 20px;
+            }
+
+            .equal-btn {
+                height: calc(80px * 2 + 10px);
+            }
+        }
+
+
+        @media (max-width: 380px) {
+            #result{
+            width: 95%;
+            height: 60px;
+            }
+            .CALCULATOR {
+                padding: 10px;
+            }
+
+            .num-btn, .equal-btn {
+                padding: 10px;
+                width: 60px;
+                height: 75px;
+                font-size: 20px;
+            }
+
+            .equal-btn {
+                height: calc(75px * 2);
+            }
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="CALCULATOR">          
+        <table>
+            <tr>
+                <td colspan="4"><input type="text" id="result" disabled></td>     
+            </tr>
+            <tr>
+                <td><input type="button" value= "ON" onclick="turnOn()" class="num-btn"></td>
+                <td><input type="button" value= "C" onclick="clearAll()" class="num-btn"></td>
+                <td><input type="button" value= "." onclick="appendDot()" class="num-btn"></td>
+                <td><button onclick="clearInput()" class="num-btn"><i class="fa-solid fa-delete-left"></i></button></td>
+            
+            </tr>
+    
+            <tr>
+                <td><input type="button" value= "1" onclick="appendNumber(1)" class="num-btn"></td>
+                <td><input type="button" value= "2" onclick="appendNumber(2)" class="num-btn"></td>
+                <td><input type="button" value= "3" onclick="appendNumber(3)" class="num-btn"></td>
+                <td><input type="button" value= "/" onclick="div()" class="num-btn"></td>     
+            </tr>
+    
+            <tr>
+                <td><input type="button" value= "4" onclick="appendNumber(4)" class="num-btn"></td>
+                <td><input type="button" value= "5" onclick="appendNumber(5)" class="num-btn"></td>
+                <td><input type="button" value= "6" onclick="appendNumber(6)" class="num-btn"></td>
+                <td><input type="button" value= "x" onclick="multiply()" class="num-btn"></td>     
+            </tr>
+    
+            <tr>
+                <td><input type="button" value= "7" onclick="appendNumber(7)" class="num-btn"></td>
+                <td><input type="button" value= "8" onclick="appendNumber(8)" class="num-btn"></td>
+                <td><input type="button" value= "9" onclick="appendNumber(9)" class="num-btn"></td>
+                
+                <td rowspan="2" ><input type="button" value= "=" onclick="calculate()" class="equal-btn"></td>   
+            </tr>
+    
+            <tr>
+                <td><input type="button" value= "+" onclick="add()" class="num-btn"></td>
+                <td><input type="button" value= "0" onclick="appendNumber(0)" class="num-btn"></td>
+                <td><input type="button" value= "-" onclick="sub()" class="num-btn"></td>
+                 
+            </tr>
+    
+    
+    
+    
+    
+        </table>
+    
+        <script>
+            let currentInput = '';
+            let currentOperator= '';
+            let calculatorOn = false;
+            let inactivityTimer;
+    
+            function resetInactivityTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(turnOff, 300000);
+            }
+    
+    
+            function turnOn() {
+                calculatorOn = true;
+                currentInput = '';
+                document.getElementById('result').value = '0';        
+            }
+    
+            function turnOff() {
+                calculatorOn = false;
+                currentInput = '';
+                document.getElementById('result').value = '';
+            }
+    
+    
+            function appendNumber(number){
+                if (!calculatorOn) return;
+                currentInput+=number;
+                document.getElementById('result').value=currentInput;
+                resetInactivityTimer();
+            }
+    
+            function add(){
+                if (!calculatorOn) return;
+                currentOperator='+';
+                currentInput+=currentOperator;
+                document.getElementById('result').value = currentInput;
+                resetInactivityTimer();
+            }
+    
+            function multiply(){
+                if (!calculatorOn) return;
+                currentOperator='*';
+                currentInput+=currentOperator;
+                document.getElementById('result').value = currentInput;
+                resetInactivityTimer();
+            }
+    
+            function div(){
+                if (!calculatorOn) return;
+                currentOperator='/';
+                currentInput+=currentOperator;
+                document.getElementById('result').value = currentInput;
+                resetInactivityTimer();
+            }
+    
+            function sub(){
+                if (!calculatorOn) return;
+                currentOperator='-';
+                currentInput+=currentOperator;
+                document.getElementById('result').value = currentInput;
+                resetInactivityTimer();
+            }
+    
+            function clearAll(){
+                if (!calculatorOn) return;
+                currentInput= ' ';
+                currentOperator= ' ';
+                document.getElementById('result').value = 0;
+                resetInactivityTimer();
+            }
+    
+            function appendDot(){
+                if (!calculatorOn) return;
+                if (!currentInput.includes('.')){
+                    currentInput += '.';
+                    document.getElementById('result').value = currentInput;
+                    resetInactivityTimer();
+                }
+            }
+    
+            function clearInput() {
+                if (!calculatorOn) return;
+                currentInput = currentInput.slice(0, -1);
+                document.getElementById('result').value = currentInput;
+                resetInactivityTimer();
+            }
+
+    
+            function calculate(){
+                if (!calculatorOn) return;
+                const result = eval(currentInput);
+                document.getElementById('result').value = result;
+                currentInput = result.toString()
+                currentOperator= '';
+                resetInactivityTimer();
+            }
+    
+    
+        </script>
+    </body>
+    </html>
+
+
+    </div>
+    
